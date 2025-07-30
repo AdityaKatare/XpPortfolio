@@ -42,13 +42,11 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
   nextZIndex: 1000,
 
   openWindow: (type: string) => {
-    console.log('Window store: Opening window of type:', type);
     const { windows, nextZIndex } = get();
     
     // Check if window already exists
     const existingWindow = windows.find(w => w.type === type);
     if (existingWindow) {
-      console.log('Window exists, focusing:', existingWindow.id);
       // Focus existing window
       set({
         windows: windows.map(w => ({
@@ -76,7 +74,6 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
       zIndex: nextZIndex
     };
 
-    console.log('Creating new window:', newWindow);
     set({
       windows: [...windows, newWindow],
       activeWindowId: newWindow.id,

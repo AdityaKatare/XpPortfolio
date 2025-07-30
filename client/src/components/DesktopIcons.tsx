@@ -11,9 +11,13 @@ const DesktopIcons = () => {
     { id: 'contact', title: 'Contact', icon: '📧', color: 'bg-red-500' },
   ];
 
-  const handleDoubleClick = (windowType: string) => {
-    console.log('Double-clicking desktop icon:', windowType);
+  const handleDoubleClick = (windowType: string, e: React.MouseEvent) => {
+    e.stopPropagation();
     openWindow(windowType);
+  };
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
   };
 
   return (
@@ -21,7 +25,8 @@ const DesktopIcons = () => {
       {icons.map((icon) => (
         <div
           key={icon.id}
-          onDoubleClick={() => handleDoubleClick(icon.id)}
+          onClick={handleClick}
+          onDoubleClick={(e) => handleDoubleClick(icon.id, e)}
           className="desktop-icon flex flex-col items-center p-2 rounded text-white cursor-pointer"
         >
           <div className={`w-8 h-8 ${icon.color} rounded mb-1 flex items-center justify-center text-xs`}>
