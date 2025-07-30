@@ -1,0 +1,81 @@
+Create a personal portfolio website using React that replicates the look and feel of the Windows XP desktop environment. The website should include the following features and structure:
+
+🎯 Objective:
+Build a fun, nostalgic portfolio website that mimics Windows XP — including boot-up, start menu navigation, draggable windows, and a taskbar showing active pages.
+
+🧩 Features to Implement:
+
+1. **Bootup Screen with Sound:**
+   - On initial load, show a Windows XP boot screen (fake loading).
+   - Play the classic Windows XP startup sound (startup.wav file in public folder).
+   - Delay for 3–5 seconds before loading the main desktop UI.
+
+2. **Desktop Interface:**
+   - Main screen should look like the Windows XP desktop.
+   - Show wallpaper, taskbar (bottom), and desktop icons if needed.
+
+3. **Start Menu Navigation:**
+   - A Start button on the taskbar opens a menu with:
+     - 🖥️ Landing Page
+     - 👤 About Me
+     - 💼 Projects
+     - ✉️ Contact
+   - Clicking each menu item opens a new draggable window styled like Windows XP UI.
+
+4. **XP-style Windows:**
+   - Each section (Landing, About, etc.) opens in its own window.
+   - Windows are draggable, minimizable, closable.
+   - Add icons, borders, and styling similar to Windows XP windows.
+
+5. **Taskbar State Handling:**
+   - Every open window should appear in the taskbar as a button/tab.
+   - Clicking the taskbar item should focus/minimize/restore the window.
+
+6. **State Management:**
+   - Use Zustand or React Context to manage open/closed window states.
+   - No need for React Router.
+
+7. **Firebase Studio (optional):**
+   - Setup a contact form that sends data to Firestore.
+   - Log page visits using Firebase Analytics or a Firestore collection.
+
+8. **Styling:**
+   - Use TailwindCSS (or CSS modules) with XP theme: classic blue, gray window borders, retro fonts.
+   - Add hover effects and classic XP icons from free icon libraries.
+
+9. **GitHub Pages Deployment:**
+   - Set up `gh-pages` package for one-click deployment.
+   - Add `homepage` in package.json for correct pathing.
+
+📁 Suggested File Structure:
+/public
+└── startup.wav
+/src
+├── components/
+│ ├── Taskbar.jsx
+│ ├── StartMenu.jsx
+│ ├── XPWindow.jsx
+├── pages/
+│ ├── Landing.jsx
+│ ├── About.jsx
+│ ├── Projects.jsx
+│ ├── Contact.jsx
+├── App.jsx
+└── index.js
+
+markdown
+Copy
+Edit
+
+📦 Dependencies:
+- `react-draggable` (for movable windows)
+- `zustand` or `react context` (for window/taskbar state)
+- `howler.js` or `HTMLAudioElement` (to play startup sound)
+- `gh-pages` (for deployment)
+
+🎮 Bonus:
+- Include live clock on taskbar.
+- Add hoverable Start Menu with XP-style animation.
+- Optional Easter egg or Blue Screen of Death (BSOD) mode for fun.
+
+This website should serve as a creative and interactive portfolio that opens with nostalgia and engages visitors through a retro UI. Code it using React and deploy it using GitHub Pages. Scaffold the initial app layout and dummy components first.
