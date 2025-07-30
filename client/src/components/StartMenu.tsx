@@ -16,8 +16,8 @@ const StartMenu = ({ show, onHide }: StartMenuProps) => {
     { id: 'contact', title: 'Contact', icon: '📧', color: 'bg-red-500' },
   ];
 
-  const handleMenuItemClick = (windowType: string) => {
-    console.log('Opening window:', windowType);
+  const handleMenuItemClick = (windowType: string, e: React.MouseEvent) => {
+    e.stopPropagation();
     openWindow(windowType);
     onHide();
   };
@@ -40,7 +40,7 @@ const StartMenu = ({ show, onHide }: StartMenuProps) => {
             {menuItems.map((item) => (
               <div
                 key={item.id}
-                onClick={() => handleMenuItemClick(item.id)}
+                onClick={(e) => handleMenuItemClick(item.id, e)}
                 className="p-2 hover:bg-blue-100 cursor-pointer rounded flex items-center"
               >
                 <div className={`w-6 h-6 ${item.color} rounded mr-3 flex items-center justify-center text-xs text-white`}>
