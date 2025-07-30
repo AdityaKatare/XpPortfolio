@@ -31,7 +31,7 @@ const BootScreen = () => {
           <div className="text-6xl font-bold mb-4">Windows XP</div>
           <div className="text-xl">Professional</div>
         </div>
-        <div className="mt-12">
+        <div className="mt-12 flex flex-col items-center">
           <div className="w-64 h-2 bg-gray-600 rounded-full overflow-hidden">
             <div 
               className="h-full bg-white transition-all duration-300 ease-in-out"

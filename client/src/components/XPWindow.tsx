@@ -38,9 +38,9 @@ const XPWindow = ({ window }: XPWindowProps) => {
     const icons = {
       about: { icon: '👤', color: 'bg-blue-500' },
       experience: { icon: '💼', color: 'bg-green-500' },
-      projects: { icon: '🚀', color: 'bg-purple-500' },
-      skills: { icon: '⚡', color: 'bg-orange-500' },
-      contact: { icon: '✉️', color: 'bg-red-500' },
+      projects: { icon: '📁', color: 'bg-purple-500' },
+      skills: { icon: '🔧', color: 'bg-orange-500' },
+      contact: { icon: '📧', color: 'bg-red-500' },
     };
     return icons[type as keyof typeof icons] || { icon: '📄', color: 'bg-gray-500' };
   };

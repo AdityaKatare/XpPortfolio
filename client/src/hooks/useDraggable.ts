@@ -26,15 +26,16 @@ export const useDraggable = (
     const element = ref.current;
     if (!element) return;
 
-    const handleMouseDown = (e: MouseEvent) => {
+    const handleMouseDown = (e: Event) => {
+      const mouseEvent = e as MouseEvent;
       // Only start dragging if clicking on the title bar (not buttons)
-      const target = e.target as HTMLElement;
+      const target = mouseEvent.target as HTMLElement;
       if (target.closest('.window-btn')) return;
 
       const rect = element.getBoundingClientRect();
       setDragOffset({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
+        x: mouseEvent.clientX - rect.left,
+        y: mouseEvent.clientY - rect.top
       });
       setIsDragging(true);
       options.onDragStart?.();
