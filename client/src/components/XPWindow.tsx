@@ -112,19 +112,19 @@ const XPWindow = ({ window }: XPWindowProps) => {
         <div className="flex space-x-1">
           <button 
             onClick={handleMinimize}
-            className="window-btn w-4 h-4 xp-button text-xs flex items-center justify-center"
+            className="window-btn window-btn-minimize w-4 h-4 text-xs flex items-center justify-center"
           >
             _
           </button>
           <button 
             onClick={handleMaximize}
-            className="window-btn w-4 h-4 xp-button text-xs flex items-center justify-center"
+            className="window-btn window-btn-maximize w-4 h-4 text-xs flex items-center justify-center"
           >
             □
           </button>
           <button 
             onClick={handleClose}
-            className="window-btn w-4 h-4 xp-button text-xs flex items-center justify-center"
+            className="window-btn window-btn-close w-4 h-4 text-xs flex items-center justify-center"
           >
             ×
           </button>

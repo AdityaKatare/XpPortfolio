@@ -34,24 +34,28 @@ const Contact = () => {
       icon: "📧",
       label: "Email",
       value: "adityamkatare@gmail.com",
+      link: "mailto:adityamkatare@gmail.com",
       color: "bg-red-500"
     },
     {
       icon: "📱",
       label: "Phone",
       value: "9611071712",
+      link: "tel:+919611071712",
       color: "bg-green-500"
     },
     {
       icon: "🐙",
       label: "GitHub",
       value: "AdityaKatare",
-      color: "bg-blue-500"
+      link: "https://github.com/AdityaKatare",
+      color: "bg-gray-800"
     },
     {
       icon: "💼",
       label: "LinkedIn",
       value: "adityamkatare",
+      link: "https://linkedin.com/in/adityamkatare",
       color: "bg-blue-700"
     }
   ];
@@ -72,7 +76,14 @@ const Contact = () => {
                   </span>
                   <div>
                     <div className="font-semibold">{contact.label}</div>
-                    <div className="text-blue-600">{contact.value}</div>
+                    <a 
+                      href={contact.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
+                    >
+                      {contact.value}
+                    </a>
                   </div>
                 </div>
               ))}

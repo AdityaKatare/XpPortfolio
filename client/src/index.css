@@ -99,6 +99,52 @@
     background: linear-gradient(180deg, var(--xp-gray) 0%, var(--xp-silver) 100%);
   }
   
+  /* Window control buttons */
+  .window-btn-close {
+    background: linear-gradient(180deg, #ff5f56 0%, #ff3b30 100%) !important;
+    color: white !important;
+    border: 1px outset #ff5f56 !important;
+  }
+  
+  .window-btn-close:hover {
+    background: linear-gradient(180deg, #ff7066 0%, #ff4b40 100%) !important;
+  }
+  
+  .window-btn-close:active {
+    border: 1px inset #ff3b30 !important;
+    background: linear-gradient(180deg, #ff3b30 0%, #ff5f56 100%) !important;
+  }
+  
+  .window-btn-minimize {
+    background: linear-gradient(180deg, #ffbd2e 0%, #ffaa00 100%) !important;
+    color: black !important;
+    border: 1px outset #ffbd2e !important;
+  }
+  
+  .window-btn-minimize:hover {
+    background: linear-gradient(180deg, #ffcd3e 0%, #ffba10 100%) !important;
+  }
+  
+  .window-btn-minimize:active {
+    border: 1px inset #ffaa00 !important;
+    background: linear-gradient(180deg, #ffaa00 0%, #ffbd2e 100%) !important;
+  }
+  
+  .window-btn-maximize {
+    background: linear-gradient(180deg, #28ca42 0%, #1edd36 100%) !important;
+    color: white !important;
+    border: 1px outset #28ca42 !important;
+  }
+  
+  .window-btn-maximize:hover {
+    background: linear-gradient(180deg, #38da52 0%, #2eed46 100%) !important;
+  }
+  
+  .window-btn-maximize:active {
+    border: 1px inset #1edd36 !important;
+    background: linear-gradient(180deg, #1edd36 0%, #28ca42 100%) !important;
+  }
+  
   .start-button {
     background: linear-gradient(180deg, var(--xp-green) 0%, var(--xp-green-dark) 100%);
     border: 1px outset var(--xp-gray);

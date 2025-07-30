@@ -13,6 +13,7 @@ const DesktopIcons = () => {
 
   const handleDoubleClick = (windowType: string, e: React.MouseEvent) => {
     e.stopPropagation();
+    console.log('Double-click detected on:', windowType);
     openWindow(windowType);
   };
 
@@ -21,13 +22,14 @@ const DesktopIcons = () => {
   };
 
   return (
-    <div className="absolute top-4 left-4 space-y-4">
+    <div className="absolute top-4 left-4 space-y-4 z-10">
       {icons.map((icon) => (
         <div
           key={icon.id}
           onClick={handleClick}
           onDoubleClick={(e) => handleDoubleClick(icon.id, e)}
-          className="desktop-icon flex flex-col items-center p-2 rounded text-white cursor-pointer"
+          className="desktop-icon flex flex-col items-center p-2 rounded text-white cursor-pointer select-none"
+          style={{ zIndex: 100 }}
         >
           <div className={`w-8 h-8 ${icon.color} rounded mb-1 flex items-center justify-center text-xs`}>
             {icon.icon}
