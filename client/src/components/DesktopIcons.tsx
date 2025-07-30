@@ -6,12 +6,13 @@ const DesktopIcons = () => {
   const icons = [
     { id: 'about', title: 'About Me', icon: '👤', color: 'bg-blue-500' },
     { id: 'experience', title: 'Experience', icon: '💼', color: 'bg-green-500' },
-    { id: 'projects', title: 'Projects', icon: '🚀', color: 'bg-purple-500' },
-    { id: 'skills', title: 'Skills', icon: '⚡', color: 'bg-orange-500' },
-    { id: 'contact', title: 'Contact', icon: '✉️', color: 'bg-red-500' },
+    { id: 'projects', title: 'Projects', icon: '📁', color: 'bg-purple-500' },
+    { id: 'skills', title: 'Skills', icon: '🔧', color: 'bg-orange-500' },
+    { id: 'contact', title: 'Contact', icon: '📧', color: 'bg-red-500' },
   ];
 
   const handleDoubleClick = (windowType: string) => {
+    console.log('Double-clicking desktop icon:', windowType);
     openWindow(windowType);
   };
 

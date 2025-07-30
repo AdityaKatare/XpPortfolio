@@ -33,11 +33,9 @@ const XPDesktop = () => {
 
   return (
     <div 
-      className="fixed inset-0 overflow-hidden"
+      className="fixed inset-0 overflow-hidden bg-gradient-to-b from-blue-400 via-green-400 to-green-500"
       style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundImage: 'linear-gradient(to bottom, #5BB0E8 0%, #87D987 100%)',
       }}
       onClick={hideStartMenu}
     >

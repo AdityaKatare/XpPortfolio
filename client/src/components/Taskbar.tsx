@@ -45,7 +45,6 @@ const Taskbar = ({ onStartClick }: TaskbarProps) => {
         onClick={onStartClick}
         className="start-button px-4 h-8 rounded text-sm flex items-center"
       >
-        <div className="w-4 h-4 bg-green-400 rounded-full mr-2"></div>
         Start
       </button>
       
