@@ -11,14 +11,10 @@ const DesktopIcons = () => {
     { id: 'contact', title: 'Contact', icon: '📧', color: 'bg-red-500' },
   ];
 
-  const handleDoubleClick = (windowType: string, e: React.MouseEvent) => {
+  const handleClick = (windowType: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    console.log('Double-click detected on:', windowType);
+    console.log('Click detected on:', windowType);
     openWindow(windowType);
-  };
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
   };
 
   return (
@@ -26,8 +22,7 @@ const DesktopIcons = () => {
       {icons.map((icon) => (
         <div
           key={icon.id}
-          onClick={handleClick}
-          onDoubleClick={(e) => handleDoubleClick(icon.id, e)}
+          onClick={(e) => handleClick(icon.id, e)}
           className="desktop-icon flex flex-col items-center p-2 rounded text-white cursor-pointer select-none"
           style={{ zIndex: 100 }}
         >
