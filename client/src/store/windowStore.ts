@@ -63,16 +63,19 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
     }
 
     // Create new window
+    const isMobile = window.innerWidth <= 768 || 
+                     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
     const newWindow: WindowState = {
       id: `${type}-${Date.now()}`,
       type,
       title: getWindowTitle(type),
-      x: 100 + (windows.length * 30),
-      y: 50 + (windows.length * 30),
-      width: 600,
-      height: 400,
+      x: isMobile ? 0 : 100 + (windows.length * 30),
+      y: isMobile ? 0 : 50 + (windows.length * 30),
+      width: isMobile ? window.innerWidth : 600,
+      height: isMobile ? window.innerHeight - 40 : 400,
       isMinimized: false,
-      isMaximized: false,
+      isMaximized: isMobile, // Auto-maximize on mobile
       zIndex: nextZIndex
     };
 

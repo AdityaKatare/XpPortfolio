@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { useWindowStore } from '../store/windowStore';
 import { useDraggable } from '../hooks/useDraggable';
+import { useIsMobile } from '../hooks/useIsMobile';
 import About from '../pages/About';
 import Experience from '../pages/Experience';
 import Projects from '../pages/Projects';
@@ -26,11 +27,12 @@ const XPWindow = ({ window }: XPWindowProps) => {
   const windowRef = useRef<HTMLDivElement>(null);
   const { closeWindow, minimizeWindow, maximizeWindow, focusWindow } = useWindowStore();
   const [originalSize, setOriginalSize] = useState({ width: 600, height: 400, x: 100, y: 50 });
+  const isMobile = useIsMobile();
 
   const { position, isDragging } = useDraggable(windowRef, {
     x: window.x,
     y: window.y,
-    disabled: window.isMaximized || window.isMinimized,
+    disabled: window.isMaximized || window.isMinimized || isMobile,
     onDragStart: () => focusWindow(window.id),
   });
 
@@ -83,14 +85,30 @@ const XPWindow = ({ window }: XPWindowProps) => {
     return null;
   }
 
-  const windowStyle = window.isMaximized 
-    ? { left: 0, top: 0, width: '100vw', height: 'calc(100vh - 40px)' }
-    : { 
-        left: position.x, 
-        top: position.y, 
-        width: window.width, 
-        height: window.height 
-      };
+  // Mobile: Full screen windows
+  let windowStyle;
+  if (isMobile) {
+    windowStyle = { 
+      left: 0, 
+      top: 0, 
+      width: '100vw', 
+      height: 'calc(100vh - 40px)' 
+    };
+  } else if (window.isMaximized) {
+    windowStyle = { 
+      left: 0, 
+      top: 0, 
+      width: '100vw', 
+      height: 'calc(100vh - 40px)' 
+    };
+  } else {
+    windowStyle = { 
+      left: position.x, 
+      top: position.y, 
+      width: window.width, 
+      height: window.height 
+    };
+  }
 
   return (
     <div
@@ -102,29 +120,33 @@ const XPWindow = ({ window }: XPWindowProps) => {
       }}
       onMouseDown={() => focusWindow(window.id)}
     >
-      <div className="xp-window-title h-6 flex items-center justify-between px-2 text-white text-xs font-bold cursor-move">
+      <div className={`xp-window-title h-6 flex items-center justify-between px-2 text-white text-xs font-bold ${isMobile ? '' : 'cursor-move'}`}>
         <div className="flex items-center">
           <div className={`w-4 h-4 ${windowIcon.color} rounded text-white text-xs flex items-center justify-center mr-1`}>
             {windowIcon.icon}
           </div>
-          <span>{window.title}</span>
+          <span className={isMobile ? 'text-sm' : ''}>{window.title}</span>
         </div>
         <div className="flex space-x-1">
-          <button 
-            onClick={handleMinimize}
-            className="window-btn window-btn-minimize w-4 h-4 text-xs flex items-center justify-center"
-          >
-            _
-          </button>
-          <button 
-            onClick={handleMaximize}
-            className="window-btn window-btn-maximize w-4 h-4 text-xs flex items-center justify-center"
-          >
-            □
-          </button>
+          {!isMobile && (
+            <>
+              <button 
+                onClick={handleMinimize}
+                className="window-btn window-btn-minimize w-4 h-4 text-xs flex items-center justify-center"
+              >
+                _
+              </button>
+              <button 
+                onClick={handleMaximize}
+                className="window-btn window-btn-maximize w-4 h-4 text-xs flex items-center justify-center"
+              >
+                □
+              </button>
+            </>
+          )}
           <button 
             onClick={handleClose}
-            className="window-btn window-btn-close w-4 h-4 text-xs flex items-center justify-center"
+            className={`window-btn window-btn-close ${isMobile ? 'w-6 h-6' : 'w-4 h-4'} text-xs flex items-center justify-center`}
           >
             ×
           </button>

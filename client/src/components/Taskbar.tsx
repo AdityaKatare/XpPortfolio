@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useWindowStore } from '../store/windowStore';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 interface TaskbarProps {
   onStartClick: () => void;
@@ -8,6 +9,7 @@ interface TaskbarProps {
 const Taskbar = ({ onStartClick }: TaskbarProps) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const { windows, focusWindow, minimizeWindow, activeWindowId } = useWindowStore();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -39,32 +41,32 @@ const Taskbar = ({ onStartClick }: TaskbarProps) => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-10 bg-gradient-to-b from-blue-500 to-blue-800 border-t-2 border-blue-300 flex items-center px-1 z-30">
+    <div className={`fixed bottom-0 left-0 right-0 ${isMobile ? 'h-12' : 'h-10'} bg-gradient-to-b from-blue-500 to-blue-800 border-t-2 border-blue-300 flex items-center px-1 z-30`}>
       {/* Start Button */}
       <button 
         onClick={onStartClick}
-        className="start-button px-4 h-8 rounded text-sm flex items-center"
+        className={`start-button ${isMobile ? 'px-6 h-10 text-base' : 'px-4 h-8 text-sm'} rounded flex items-center`}
       >
         Start
       </button>
       
       {/* Taskbar Buttons Container */}
-      <div className="flex-1 flex items-center ml-2 space-x-1">
+      <div className="flex-1 flex items-center ml-2 space-x-1 overflow-x-auto">
         {windows.map((window) => (
           <button
             key={window.id}
             onClick={() => handleTaskbarButtonClick(window.id)}
-            className={`taskbar-button px-3 h-6 text-xs truncate max-w-32 ${
+            className={`taskbar-button ${isMobile ? 'px-4 h-8 text-sm min-w-20' : 'px-3 h-6 text-xs max-w-32'} truncate ${
               activeWindowId === window.id && !window.isMinimized ? 'active' : ''
             }`}
           >
-            {window.title}
+            {isMobile ? window.title.split(' - ')[0] : window.title}
           </button>
         ))}
       </div>
       
       {/* System Tray */}
-      <div className="flex items-center space-x-2 text-white text-xs pr-2">
+      <div className={`flex items-center space-x-2 text-white ${isMobile ? 'text-sm' : 'text-xs'} pr-2`}>
         <div className="bg-blue-900 px-2 py-1 border border-blue-700">
           {formatTime(currentTime)}
         </div>

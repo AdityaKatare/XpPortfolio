@@ -5,11 +5,13 @@ import StartMenu from './StartMenu';
 import XPWindow from './XPWindow';
 import DesktopIcons from './DesktopIcons';
 import { useWindowStore } from '../store/windowStore';
+import { useIsMobile } from '../hooks/useIsMobile';
 
-const XPDesktop = () => {
+export default function XPDesktop() {
   const [isBooting, setIsBooting] = useState(true);
   const [showStartMenu, setShowStartMenu] = useState(false);
-  const { windows } = useWindowStore();
+  const windows = useWindowStore((state) => state.windows);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -43,7 +45,7 @@ const XPDesktop = () => {
       <DesktopIcons />
 
       {/* Windows Container */}
-      <div className="absolute inset-0 pb-10">
+      <div className={`absolute inset-0 ${isMobile ? 'pb-16' : 'pb-10'}`}>
         {windows.map((window) => (
           <XPWindow
             key={window.id}
@@ -60,5 +62,3 @@ const XPDesktop = () => {
     </div>
   );
 };
-
-export default XPDesktop;
