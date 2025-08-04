@@ -13,10 +13,10 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Simulate form submission
+    // Simple contact form - just show a message
     toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you soon!",
+      title: "Contact Reached",
+      description: "Please use the different options to reach out directly.",
     });
     
     // Reset form
