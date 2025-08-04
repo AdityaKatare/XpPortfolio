@@ -28,7 +28,7 @@ const BootScreen = () => {
     <div className="boot-screen fixed inset-0 z-50 flex flex-col items-center justify-center text-white">
       <div className="text-center">
         <div className="mb-8">
-          <div className="text-6xl font-bold mb-4">Windows XP</div>
+          <div className="text-6xl font-bold mb-4">ResumeXP</div>
           <div className="text-xl">Professional</div>
         </div>
         <div className="mt-12 flex flex-col items-center">

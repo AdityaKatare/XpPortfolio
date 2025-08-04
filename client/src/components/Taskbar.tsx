@@ -47,6 +47,12 @@ const Taskbar = ({ onStartClick }: TaskbarProps) => {
         onClick={onStartClick}
         className={`start-button ${isMobile ? 'px-6 h-10 text-base' : 'px-4 h-8 text-sm'} rounded flex items-center`}
       >
+        <img 
+          src="/assets/icons/startMenu.png" 
+          alt="Start" 
+          className={`${isMobile ? 'w-5 h-5' : 'w-4 h-4'} mr-2`}
+          style={{ imageRendering: 'pixelated' }}
+        />
         Start
       </button>
       

@@ -1,7 +1,8 @@
-import { useState, useRef } from 'react';
-import { useWindowStore } from '../store/windowStore';
+import React, { useRef, useState } from 'react';
 import { useDraggable } from '../hooks/useDraggable';
+import { useWindowStore } from '../store/windowStore';
 import { useIsMobile } from '../hooks/useIsMobile';
+import XPIcon from './XPIcon';
 import About from '../pages/About';
 import Experience from '../pages/Experience';
 import Projects from '../pages/Projects';
@@ -37,14 +38,14 @@ const XPWindow = ({ window }: XPWindowProps) => {
   });
 
   const getWindowIcon = (type: string) => {
-    const icons = {
-      about: { icon: '👤', color: 'bg-blue-500' },
-      experience: { icon: '💼', color: 'bg-green-500' },
-      projects: { icon: '📁', color: 'bg-purple-500' },
-      skills: { icon: '🔧', color: 'bg-orange-500' },
-      contact: { icon: '📧', color: 'bg-red-500' },
+    const iconMap = {
+      about: 'aboutMe' as const,
+      experience: 'experience' as const,
+      projects: 'projects' as const,
+      skills: 'skills' as const,
+      contact: 'contact' as const,
     };
-    return icons[type as keyof typeof icons] || { icon: '📄', color: 'bg-gray-500' };
+    return iconMap[type as keyof typeof iconMap] || 'user' as const;
   };
 
   const renderContent = () => {
@@ -79,7 +80,7 @@ const XPWindow = ({ window }: XPWindowProps) => {
     closeWindow(window.id);
   };
 
-  const windowIcon = getWindowIcon(window.type);
+  const windowIconType = getWindowIcon(window.type);
 
   if (window.isMinimized) {
     return null;
@@ -122,9 +123,7 @@ const XPWindow = ({ window }: XPWindowProps) => {
     >
       <div className={`xp-window-title h-6 flex items-center justify-between px-2 text-white text-xs font-bold ${isMobile ? '' : 'cursor-move'}`}>
         <div className="flex items-center">
-          <div className={`w-4 h-4 ${windowIcon.color} rounded text-white text-xs flex items-center justify-center mr-1`}>
-            {windowIcon.icon}
-          </div>
+          <XPIcon type={windowIconType} size="small" className="mr-1" />
           <span className={isMobile ? 'text-sm' : ''}>{window.title}</span>
         </div>
         <div className="flex space-x-1">

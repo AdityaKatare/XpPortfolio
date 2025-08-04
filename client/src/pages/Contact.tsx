@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import XPIcon from '@/components/XPIcon';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -31,32 +32,28 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: "📧",
+      iconType: "mail" as const,
       label: "Email",
       value: "adityamkatare@gmail.com",
-      link: "mailto:adityamkatare@gmail.com",
-      color: "bg-red-500"
+      link: "mailto:adityamkatare@gmail.com"
     },
     {
-      icon: "📱",
+      iconType: "phone" as const,
       label: "Phone",
       value: "9611071712",
-      link: "tel:+919611071712",
-      color: "bg-green-500"
+      link: "tel:+919611071712"
     },
     {
-      icon: "🐙",
+      iconType: "location" as const,
       label: "GitHub",
       value: "AdityaKatare",
-      link: "https://github.com/AdityaKatare",
-      color: "bg-gray-800"
+      link: "https://github.com/AdityaKatare"
     },
     {
-      icon: "💼",
+      iconType: "location" as const,
       label: "LinkedIn",
       value: "adityamkatare",
-      link: "https://linkedin.com/in/adityamkatare",
-      color: "bg-blue-700"
+      link: "https://linkedin.com/in/adityamkatare"
     }
   ];
 
@@ -67,13 +64,14 @@ const Contact = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
           <div className="bg-white p-4 border border-gray-300">
-            <h3 className="font-bold text-blue-600 mb-3">📞 Get in Touch</h3>
+            <h3 className="font-bold text-blue-600 mb-3 flex items-center">
+              <XPIcon type="contact" size="small" className="mr-2" />
+              Get in Touch
+            </h3>
             <div className="space-y-3 text-sm">
               {contactInfo.map((contact, index) => (
                 <div key={index} className="flex items-center">
-                  <span className={`w-8 h-8 ${contact.color} rounded-full flex items-center justify-center text-white mr-3`}>
-                    {contact.icon}
-                  </span>
+                  <XPIcon type={contact.iconType} size="large" className="mr-3" />
                   <div>
                     <div className="font-semibold">{contact.label}</div>
                     <a 
@@ -92,7 +90,10 @@ const Contact = () => {
         </div>
         
         <div className="bg-white p-4 border border-gray-300">
-          <h3 className="font-bold text-green-600 mb-3">✉️ Send Message</h3>
+          <h3 className="font-bold text-green-600 mb-3 flex items-center">
+            <XPIcon type="send" size="small" className="mr-2" />
+            Send Message
+          </h3>
           <form onSubmit={handleSubmit} className="space-y-3">
             <div>
               <label className="block text-sm font-bold mb-1">Name:</label>

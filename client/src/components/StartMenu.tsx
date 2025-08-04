@@ -1,4 +1,5 @@
 import { useWindowStore } from '../store/windowStore';
+import XPIcon from './XPIcon';
 
 interface StartMenuProps {
   show: boolean;
@@ -9,11 +10,11 @@ const StartMenu = ({ show, onHide }: StartMenuProps) => {
   const { openWindow } = useWindowStore();
 
   const menuItems = [
-    { id: 'about', title: 'About Me', icon: '👤', color: 'bg-blue-500' },
-    { id: 'experience', title: 'Experience', icon: '💼', color: 'bg-green-500' },
-    { id: 'projects', title: 'Projects', icon: '📁', color: 'bg-purple-500' },
-    { id: 'skills', title: 'Skills', icon: '🔧', color: 'bg-orange-500' },
-    { id: 'contact', title: 'Contact', icon: '📧', color: 'bg-red-500' },
+    { id: 'about', title: 'About Me', iconType: 'aboutMe' as const },
+    { id: 'experience', title: 'Experience', iconType: 'experience' as const },
+    { id: 'projects', title: 'Projects', iconType: 'projects' as const },
+    { id: 'skills', title: 'Skills', iconType: 'skills' as const },
+    { id: 'contact', title: 'Contact', iconType: 'contact' as const },
   ];
 
   const handleMenuItemClick = (windowType: string, e: React.MouseEvent) => {
@@ -43,9 +44,7 @@ const StartMenu = ({ show, onHide }: StartMenuProps) => {
                 onClick={(e) => handleMenuItemClick(item.id, e)}
                 className="p-2 hover:bg-blue-100 cursor-pointer rounded flex items-center"
               >
-                <div className={`w-6 h-6 ${item.color} rounded mr-3 flex items-center justify-center text-xs text-white`}>
-                  {item.icon}
-                </div>
+                <XPIcon type={item.iconType} size="medium" className="mr-3" />
                 {item.title}
               </div>
             ))}

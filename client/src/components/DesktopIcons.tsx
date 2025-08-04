@@ -1,16 +1,17 @@
 import { useWindowStore } from '../store/windowStore';
 import { useIsMobile } from '../hooks/useIsMobile';
+import XPIcon from './XPIcon';
 
 const DesktopIcons = () => {
   const { openWindow } = useWindowStore();
   const isMobile = useIsMobile();
 
   const icons = [
-    { id: 'about', title: 'About Me', icon: '👤', color: 'bg-blue-500' },
-    { id: 'experience', title: 'Experience', icon: '💼', color: 'bg-green-500' },
-    { id: 'projects', title: 'Projects', icon: '📁', color: 'bg-purple-500' },
-    { id: 'skills', title: 'Skills', icon: '🔧', color: 'bg-orange-500' },
-    { id: 'contact', title: 'Contact', icon: '📧', color: 'bg-red-500' },
+    { id: 'about', title: 'About Me', iconType: 'aboutMe' as const },
+    { id: 'experience', title: 'Experience', iconType: 'experience' as const },
+    { id: 'projects', title: 'Projects', iconType: 'projects' as const },
+    { id: 'skills', title: 'Skills', iconType: 'skills' as const },
+    { id: 'contact', title: 'Contact', iconType: 'contact' as const },
   ];
 
   const handleClick = (windowType: string, e: React.MouseEvent) => {
@@ -31,8 +32,8 @@ const DesktopIcons = () => {
               className="desktop-icon flex flex-col items-center p-3 rounded text-white cursor-pointer select-none flex-shrink-0"
               style={{ zIndex: 100, minWidth: '80px' }}
             >
-              <div className={`w-12 h-12 ${icon.color} rounded-lg mb-2 flex items-center justify-center text-lg`}>
-                {icon.icon}
+              <div className="mb-2">
+                <XPIcon type={icon.iconType} size="large" />
               </div>
               <div className="text-xs text-center font-sans whitespace-nowrap">{icon.title}</div>
             </div>
@@ -52,8 +53,8 @@ const DesktopIcons = () => {
           className="desktop-icon flex flex-col items-center p-2 rounded text-white cursor-pointer select-none"
           style={{ zIndex: 100 }}
         >
-          <div className={`w-8 h-8 ${icon.color} rounded mb-1 flex items-center justify-center text-xs`}>
-            {icon.icon}
+          <div className="mb-1">
+            <XPIcon type={icon.iconType} size="medium" />
           </div>
           <div className="text-xs text-center font-sans">{icon.title}</div>
         </div>
