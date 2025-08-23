@@ -39,6 +39,30 @@ const Projects = () => {
       description: "Developed a time-limited site blocker for YouTube and Netflix with background tracking and user-configurable limits, enabling effective screen time management.",
       technologies: "JavaScript, Chrome Extension API",
       githubRepo: "timerly-chrome-extension"
+    },
+    {
+      title: "Chat with PDF",
+      icon: "💬",
+      color: "text-pink-600",
+      description: "AI SaaS platform to conversate with your PDFs for free.",
+      technologies: "Python, LangChain, LLM, SaaS, PDF Parsing",
+      githubRepo: "chat-with-pdf"
+    },
+    {
+      title: "pubMedMiner",
+      icon: "🔎",
+      color: "text-yellow-700",
+      description: "A Python CLI tool for searching PubMed papers and filtering results to identify research with biotech company affiliated authors.",
+      technologies: "Python, PubMed API, CLI",
+      githubRepo: "pubMedMiner"
+    },
+    {
+      title: "Cold Email Generator",
+      icon: "📧",
+      color: "text-blue-700",
+      description: "A Streamlit web application that scrapes job postings from a given URL, analyzes the content using an LLM (via Groq API), and generates personalized cold emails for job applications based on your portfolio. Features web scraping, LLM integration, portfolio matching, and cold email generation.",
+      technologies: "Python, Streamlit, Web Scraping, LLM, Groq API, CSV",
+      githubRepo: "cold-email-generator"
     }
   ];
 
@@ -46,7 +70,7 @@ const Projects = () => {
     <div className="space-y-4">
       <h2 className="text-xl font-bold text-blue-900 border-b border-gray-400 pb-2">Featured Projects</h2>
       
-      <div className="space-y-4 max-h-80 overflow-y-auto">
+  <div className="space-y-4">
         {projects.map((project, index) => (
           <div key={index} className="bg-white p-4 border border-gray-300 shadow-sm">
             <h3 className={`font-bold ${project.color} mb-2 flex items-center justify-between`}>
