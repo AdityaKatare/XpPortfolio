@@ -89,69 +89,72 @@ const XPWindow = ({ window }: XPWindowProps) => {
   // Mobile: Full screen windows
   let windowStyle;
   if (isMobile) {
-    windowStyle = { 
-      left: 0, 
-      top: 0, 
-      width: '100vw', 
-      height: 'calc(100vh - 40px)' 
+    windowStyle = {
+      left: 0,
+      top: 0,
+      width: '100vw',
+      height: 'calc(100vh - 40px)'
     };
   } else if (window.isMaximized) {
-    windowStyle = { 
-      left: 0, 
-      top: 0, 
-      width: '100vw', 
-      height: 'calc(100vh - 40px)' 
+    windowStyle = {
+      left: 0,
+      top: 0,
+      width: '100vw',
+      height: 'calc(100vh - 40px)'
     };
   } else {
-    windowStyle = { 
-      left: position.x, 
-      top: position.y, 
-      width: window.width, 
-      height: window.height 
+    windowStyle = {
+      left: position.x,
+      top: position.y,
+      width: window.width,
+      height: window.height
     };
   }
 
   return (
     <div
       ref={windowRef}
-      className={`xp-window absolute window-appear ${isDragging ? 'cursor-move' : ''}`}
+      className={`xp-window absolute window-appear ${isDragging ? 'cursor-move' : ''} ${window.zIndex === 50 ? 'xp-window-focused' : ''}`}
       style={{
         ...windowStyle,
         zIndex: window.zIndex,
       }}
       onMouseDown={() => focusWindow(window.id)}
     >
-      <div className={`xp-window-title h-6 flex items-center justify-between px-2 text-white text-xs font-bold ${isMobile ? '' : 'cursor-move'}`}>
+      <div className={`xp-window-title-bar ${isMobile ? '' : 'cursor-move'}`}>
         <div className="flex items-center">
           <XPIcon type={windowIconType} size="small" className="mr-1" />
-          <span className={isMobile ? 'text-sm' : ''}>{window.title}</span>
+          <span className={`xp-window-title-text ${isMobile ? 'text-sm' : ''}`}>{window.title}</span>
         </div>
-        <div className="flex space-x-1">
+        <div className="title-bar-controls">
           {!isMobile && (
             <>
-              <button 
+              <button
                 onClick={handleMinimize}
-                className="window-btn window-btn-minimize w-4 h-4 text-xs flex items-center justify-center"
+                className="title-btn title-btn-minimize"
+                title="Minimize"
               >
-                _
+                <span className="mb-2">_</span>
               </button>
-              <button 
+              <button
                 onClick={handleMaximize}
-                className="window-btn window-btn-maximize w-4 h-4 text-xs flex items-center justify-center"
+                className="title-btn title-btn-maximize"
+                title="Maximize"
               >
-                □
+                <div className="w-3 h-3 border border-white"></div>
               </button>
             </>
           )}
-          <button 
+          <button
             onClick={handleClose}
-            className={`window-btn window-btn-close ${isMobile ? 'w-6 h-6' : 'w-4 h-4'} text-xs flex items-center justify-center`}
+            className="title-btn title-btn-close"
+            title="Close"
           >
             ×
           </button>
         </div>
       </div>
-      <div className="xp-window-content flex-1 p-4 overflow-auto text-sm" style={{ height: 'calc(100% - 24px)' }}>
+      <div className="xp-window-content">
         {renderContent()}
       </div>
     </div>

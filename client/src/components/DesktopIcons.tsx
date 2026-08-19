@@ -45,18 +45,18 @@ const DesktopIcons = () => {
 
   // Desktop layout: vertical icons on left
   return (
-    <div className="absolute top-4 left-4 space-y-4 z-10">
+    <div className="absolute top-4 left-4 flex flex-col flex-wrap h-[calc(100vh-40px)] content-start z-10">
       {icons.map((icon) => (
         <div
           key={icon.id}
           onClick={(e) => handleClick(icon.id, e)}
-          className="desktop-icon flex flex-col items-center p-2 rounded text-white cursor-pointer select-none"
+          className="desktop-icon"
           style={{ zIndex: 100 }}
         >
-          <div className="mb-1">
+          <div className="desktop-icon-img">
             <XPIcon type={icon.iconType} size="medium" />
           </div>
-          <div className="text-xs text-center font-sans">{icon.title}</div>
+          <div className="desktop-icon-text">{icon.title}</div>
         </div>
       ))}
     </div>

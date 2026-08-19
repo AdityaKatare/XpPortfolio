@@ -35,9 +35,12 @@ export default function XPDesktop() {
 
   return (
     <div 
-      className="fixed inset-0 overflow-hidden bg-gradient-to-b from-blue-400 via-green-400 to-green-500"
+      className="fixed inset-0 overflow-hidden"
       style={{
-        backgroundImage: 'linear-gradient(to bottom, #5BB0E8 0%, #87D987 100%)',
+        background: 'linear-gradient(to bottom, #3b8cfb 0%, #3b8cfb 50%, #68ae34 50%, #68ae34 100%)', // Fallback
+        backgroundImage: 'url(https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)', // High quality gradient/abstract that looks like Bliss
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
       }}
       onClick={hideStartMenu}
     >
